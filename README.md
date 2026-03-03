@@ -8,14 +8,14 @@ Clone the repository
 ```bash
 git clonehttps://github.com/entbappy/Build-a-Complete-Medical-Chatbot-with-LLMs-LangChain-Pinecone-Flask-AWS.git
 ```
-### STEP 01- Create a conda environment after opening the repository
+### STEP 01- Create a python venv environment after opening the repository
 
 ```bash
-conda create -n medibot python=3.10 -y
+python3 -m venv .venv
 ```
 
 ```bash
-conda activate medibot
+source .venv/bin/activate
 ```
 
 
@@ -25,11 +25,11 @@ pip install -r requirements.txt
 ```
 
 
-### Create a `.env` file in the root directory and add your Pinecone & openai credentials as follows:
+### Create a `.env` file in the root directory and add your Pinecone & Gemini credentials as follows:
 
 ```ini
 PINECONE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
-OPENAI_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+GOOGLE_API_KEY = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 ```
 
 
@@ -43,6 +43,17 @@ python store_index.py
 python app.py
 ```
 
+### Medical Document Explainer (Image Upload)
+
+- Open `http://localhost:8080/doc-explainer`
+- Upload medical image (`jpg`, `jpeg`, `png`, `webp`)
+- Get explanation in simple English with:
+	- Simple summary
+	- Key values/findings
+	- What it usually means
+	- Helpful questions for doctor
+	- Safety note
+
 Now,
 ```bash
 open up localhost:
@@ -54,7 +65,7 @@ open up localhost:
 - Python
 - LangChain
 - Flask
-- GPT
+- Gemini
 - Pinecone
 
 
@@ -127,4 +138,4 @@ open up localhost:
    - AWS_DEFAULT_REGION
    - ECR_REPO
    - PINECONE_API_KEY
-   - OPENAI_API_KEY
+	- GOOGLE_API_KEY
