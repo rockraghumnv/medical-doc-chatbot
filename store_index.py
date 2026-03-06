@@ -5,14 +5,15 @@ from pinecone import Pinecone
 from pinecone import ServerlessSpec 
 from langchain_pinecone import PineconeVectorStore
 
-load_dotenv()
+load_dotenv(override=True)
 
 
-PINECONE_API_KEY=os.environ.get('PINECONE_API_KEY')
-OPENAI_API_KEY=os.environ.get('OPENAI_API_KEY')
+PINECONE_API_KEY = os.getenv("PINECONE_API_KEY", "").strip().strip('"').strip("'")
 
-os.environ["PINECONE_API_KEY"] = PINECONE_API_KEY
-os.environ["OPENAI_API_KEY"] = OPENAI_API_KEY
+if not PINECONE_API_KEY:
+    raise ValueError("Missing PINECONE_API_KEY in environment or .env file")
+if PINECONE_API_KEY.startswith("your_") or not PINECONE_API_KEY.startswith("pcsk_"):
+    raise ValueError("Invalid PINECONE_API_KEY format. Set your real Pinecone API key in .env")
 
 
 extracted_data=load_pdf_file(data='data/')
